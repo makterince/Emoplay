@@ -1,46 +1,56 @@
-function recordAudio() {
-	const duration = 3;  // Duration of audio recording in seconds
-	
-	// Record audio using the Web Audio API or a library like Recorder.js
-	// Store the recorded audio in the 'audio' variable
-	// Convert audio to a suitable format for sending to the server
-	
-	const audioBlob = convertToBlob(audio);
+// Script to handle button click events and animations
+document.addEventListener("DOMContentLoaded", function() {
+	const recordButton = document.getElementById("recordButton");
+	const playButton = document.getElementById("playButton");
+	const recordAnimation = document.getElementById("recordAnimation");
+	const prevButton = document.getElementById("prevButton");
+	const nextButton = document.getElementById("nextButton");
 
-	// Create a FormData object to send the audio data as a file
+	recordButton.addEventListener("click", function() {
+		// TODO: Handle audio recording logic
+		console.log("Recording audio...");
+		fetch("/record", { method: "POST" })
+			.then(response => {
+				// Handle the response from the server if needed
+			})
+			.catch(error => {
+				// handle any errors that occur during the request
+			});
+	});
 	
-	var formData = new FormData();
-	formData.append('audio', audioBlob);
-	
-	// Make an API call to the server
-	fetch('/classify', {
-		method: 'POST',
-		body: formData
-	})
-		.then(response => response.json())
-		.then(data => {
-			// Update the UI with the predicted emotion and suggested songs
-			updateUI(data.mood, data.songs);
-		})
-		.catch(error => {
-			console.error('Error:', error);
-		});
-}
+	playButton.addEventListener("click", function() {
+		// TODO: Handle music playback logic
+		console.log("Playing music...");
+		fetch("/play", { method: "POST" })
+			.then(response => {
+				// Handle the response from the server if needed
+			})
+			.catch(error => {
+				// Handle any errors that occur during the request
+			});
+	});
 
-function updateUI(predictedEmotion, suggestedSongs) {
-	document.getElementById('predictedEmotion').innerText = 'Predicted Emotion: ' + predictedEmotion;
-	
-	const suggestedSongsList = document.getElementById('suggestedSongs');
-	suggestedSongsList.innerHTML = '';
-	
-	for (let i = 0; i < suggestedSongs.length; i++) {
-		var listItem = document.createElement('li');
-		    listItem.innerText = suggestedSongs[i];
-		    suggestedSongsList.appendChild(listItem);
-		  }
-}
+	prevButton.addEventListener("click", function() {
+		// TODO: Handle previous song logic
+		console.log("Playing previous song...");
+		fetch("/previous", { method: "POST" })
+			.then(response => {
+				// Handle the response from the server if needed
+			})
+			.catch(error => {
+				        // Handle any errors that occur during the request
+			});
+	});
 
-function convertToBlob(audio) {
-	// Add code here to convert the audio data to a Blob or File object
-	// suitable for sending to the server
-}
+	nextButton.addEventListener("click", function() {
+		// TODO: Handle next song logic
+		console.log("Playing next song...");
+		fetch("/next", { method: "POST" })
+			.then(response => {
+				// Handle the response from the server if needed
+			})
+			.catch(error => {
+				        // Handle any errors that occur during the request
+			});
+	});
+});

@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import librosa
 import numpy as np
 import tensorflow as tf
@@ -7,6 +7,10 @@ app = Flask(__name__)
 
 # Load the pre-trained emotion detection model
 model = tf.keras.models.load_model('model.h5')
+
+@app.route('/')
+def index():
+    return render_template('emoplay.html')
 
 @app.route('/audio', methods=['POST'])
 def save_audio():

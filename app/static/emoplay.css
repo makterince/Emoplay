@@ -1,0 +1,92 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+.skin {
+         background: linear-gradient(45deg, purple, gold 50%, maroon 50%);
+      	 background-size: 20px 20px;
+       	 background-repeat: repeat;
+       	 position: relative;
+       	 z-index: -1;
+}
+
+.container {
+	text-align: center;
+	padding: 20px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1;
+}
+
+.logo {
+	font-size: 60px;
+	color: #fff;
+	border-radius: 50%;
+	width: 200px;
+	height: 200px;
+	background: linear-gradient(to right, #FEB692, #EA5455);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto 20px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.subtitle {
+	font-size: 18px;
+	margin-top: 0;
+	color: #fff;
+}
+
+.controls {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	margin-top: 50px;
+}
+
+button {
+	font-size: 18px;
+	padding: 10px 20px;
+	margin-bottom: 20px;
+	background-color: #2196F3;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+}
+
+.play-controls {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+
+.play-controls button {
+	font-size: 18px;
+	padding: 10px 20px;
+	margin-right: 10px;
+	background-color: #2196F3;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+}
+
+.player {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background-color: #eee;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}

@@ -6,7 +6,7 @@ import tensorflow as tf
 app = Flask(__name__)
 
 # Load the pre-trained emotion detection model
-model = tf.keras.models.load_model('model.h5')
+#model = tf.keras.models.load_model('model.h5')
 
 @app.route('/')
 def index():

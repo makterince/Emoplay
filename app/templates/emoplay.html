@@ -2,23 +2,31 @@
 <html>
 <head>
 	<title>EMOPLAY</title>
-	<link rel="stylesheet" type="text/css" href="/emoplay.css">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='emoplay.css') }}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
+	<div class="skin">
 	<div class="container">
 		 <h1 class="logo">EMOPLAY</h1>
 		 <p class="subtitle">Music that suits your mood</p>
 		 
 		 <div class="controls">
-			 <button id="recordButton">Welcome in,please record your voice</button>
-				 <button id="playButton">Play</button>
-				 <div class="player">
-					 <div id="recordAnimation"></div>
-				 </div>
-				 <button id="prevButton">Previous</button>
-				 <button id="nextButton">Next</button>
-		 </div>
+			 <button id="recordButton">Welcome in, please record your voice</button>
+		         <div class="play-controls">
+				         <button id="prevButton"><i class="fas fa-step-backward"></i>
+						 </button>
+						 <button id="playButton">      <i class="fas fa-play"></i>
+						 </button>
+						 <button id="nextButton">
+							 <i class="fas fa-step-forward"></i>
+						 </button>
+			 </div>
+			 <div class="player">
+				 <div id="recordAnimation"></div>
+			 </div>
 	</div>
-	<script src="emoplay.js"></script>
+	</div>
+	<script src="{{ url_for('static', filename='emoplay.js') }}"></script>
 </body>
 </html>

@@ -1,0 +1,49 @@
+.container {
+	text-align: center;
+	padding: 20px;
+}
+
+.logo {
+	font-size: 40px;
+}
+
+.subtitle {
+	font-size: 18px;
+	margin-top: -10px;
+	margin-bottom: 30px;
+	color: #888;
+}
+
+.controls {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	margin-top: 50px;
+}
+
+button {
+	font-size: 18px;
+	padding: 10px 20px;
+	margin-bottom: 20px;
+	background-color: #2196F3;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+}
+
+.player {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background-color: #eee;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}

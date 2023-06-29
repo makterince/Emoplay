@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 import requests
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 # Spotify API credentials
 CLIENT_ID = '6b39c5ac11d84059b461372141789b59'

@@ -41,13 +41,39 @@ body {
   color: #fff;
 }
 
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
 .emotion-buttons {
   display: flex;
+  align-items: center;
   justify-content: center;
   margin-bottom: 20px;
 }
 
 .emotion-buttons button {
+  font-size: 18px;
+  padding: 10px;
+  margin-right: 10px;
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.play-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.play-controls button {
   font-size: 18px;
   padding: 10px 20px;
   margin-right: 10px;

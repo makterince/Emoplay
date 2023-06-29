@@ -1,61 +1,67 @@
 document.addEventListener("DOMContentLoaded", function() {
-  const sadButton = document.getElementById("sadButton");
-  const happyButton = document.getElementById("happyButton");
-  const excitedButton = document.getElementById("excitedButton");
-  const indifferentButton = document.getElementById("indifferentButton");
-  const submitEmotionButton = document.getElementById("submitEmotionButton");
+  const recordButton = document.getElementById("recordButton");
+  const playButton = document.getElementById("playButton");
+  const prevButton = document.getElementById("prevButton");
+  const nextButton = document.getElementById("nextButton");
+  const shuffleButton = document.getElementById("shuffleButton");
+  const recordAnimation = document.getElementById("recordAnimation");
+  const emotionButtons = document.querySelectorAll(".emotion-buttons button");
 
-  sadButton.addEventListener("click", function() {
-    setEmotion("sad");
+  let audioChunks = [];
+
+  // Add event listeners to the emotion buttons
+  emotionButtons.forEach(function(button) {
+    button.addEventListener("click", function() {
+      const selectedEmotion = button.dataset.emotion;
+      getPlaylist(selectedEmotion);
+    });
   });
 
-  happyButton.addEventListener("click", function() {
-    setEmotion("happy");
-  });
-
-  excitedButton.addEventListener("click", function() {
-    setEmotion("excited");
-  });
-
-  indifferentButton.addEventListener("click", function() {
-    setEmotion("indifferent");
-  });
-
-  function setEmotion(emotion) {
-    console.log("Selected emotion:", emotion);
-  }
-
-  submitEmotionButton.addEventListener("click", function() {
-    const selectedEmotion = getSelectedEmotion();
-    if (selectedEmotion) {
-      sendEmotionToServer(selectedEmotion);
-    }
-  });
-
-  function getSelectedEmotion() {
-    const buttons = [sadButton, happyButton, excitedButton, indifferentButton];
-    for (const button of buttons) {
-      if (button.classList.contains("selected")) {
-        return button.getAttribute("data-emotion");
-      }
-    }
-    return null;
-  }
-
-  function sendEmotionToServer(emotion) {
+  // Function to get the playlist based on the selected emotion
+  function getPlaylist(emotion) {
     fetch("/get-playlist", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ emotion: emotion })
+      body: JSON.stringify({ emotion: emotion }),
     })
-      .then(response => response.json())
-      .then(data => {
-        console.log("Received playlist data:", data);
+      .then(function(response) {
+        return response.json();
       })
-      .catch(error => {
+      .then(function(data) {
+        // Handle the received playlist data
+        const playlist = data.playlist;
+        console.log("Received playlist:", playlist);
+      })
+      .catch(function(error) {
         console.error("Error retrieving playlist:", error);
       });
   }
+
+  // Add event listeners to the control buttons
+  recordButton.addEventListener("click", function() {
+    // TODO: Handle audio recording logic
+    console.log("Recording audio...");
+  });
+
+  playButton.addEventListener("click", function() {
+    // TODO: Handle music playback logic
+    console.log("Playing music...");
+  });
+
+  prevButton.addEventListener("click", function() {
+    // TODO: Handle previous song logic
+    console.log("Playing previous song...");
+  });
+
+  nextButton.addEventListener("click", function() {
+    // TODO: Handle next song logic
+    console.log("Playing next song...");
+  });
+
+  shuffleButton.addEventListener("click", function() {
+    // TODO: Handle shuffle song logic
+    console.log("Shuffling songs...");
+  });
 });

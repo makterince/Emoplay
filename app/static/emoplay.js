@@ -22,12 +22,10 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   function setEmotion(emotion) {
-    // Update the UI to indicate the selected emotion, if needed
     console.log("Selected emotion:", emotion);
   }
 
   submitEmotionButton.addEventListener("click", function() {
-    // Get the selected emotion and send it to the server
     const selectedEmotion = getSelectedEmotion();
     if (selectedEmotion) {
       sendEmotionToServer(selectedEmotion);
@@ -55,7 +53,6 @@ document.addEventListener("DOMContentLoaded", function() {
       .then(response => response.json())
       .then(data => {
         console.log("Received playlist data:", data);
-        // Handle the received playlist data (e.g., display songs, play music)
       })
       .catch(error => {
         console.error("Error retrieving playlist:", error);

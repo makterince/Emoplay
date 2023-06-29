@@ -8,23 +8,21 @@
 <body>
 	<div class="skin">
 	<div class="container">
-		 <h1 class="logo">EMOPLAY</h1>
-		 <p class="subtitle">Music that suits your mood</p>
+		<h1 class="logo">EMOPLAY</h1>
+		<p class="subtitle">Music that suits your mood</p>
 		 
-		 <div class="controls">
-			 <button id="recordButton">Welcome in, please record your voice</button>
-		         <div class="play-controls">
-				         <button id="prevButton"><i class="fas fa-step-backward"></i>
-						 </button>
-						 <button id="playButton">      <i class="fas fa-play"></i>
-						 </button>
-						 <button id="nextButton">
-							 <i class="fas fa-step-forward"></i>
-						 </button>
-			 </div>
-			 <div class="player">
-				 <div id="recordAnimation"></div>
-			 </div>
+		<div class="controls">
+			<div class="emotion-question">
+				<p class="question">How are you feeling right now?</p>
+				<div class="options">
+					<button id="sadButton">Sad</button>
+					<button id="happyButton">Happy</button>
+					<button id="excitedButton">Excited</button>
+					<button id="indifferentButton">Indifferent</button>
+				</div>
+				<button id="submitEmotionButton">Submit</button>
+			</div>
+		</div>
 	</div>
 	</div>
 	<script src="static/emoplay.js"></script>

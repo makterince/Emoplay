@@ -1,45 +1,35 @@
 from flask import Flask, request, jsonify, render_template
-import librosa
-import numpy as np
-import tensorflow as tf
 
 app = Flask(__name__)
-
-# Load the pre-trained emotion detection model
-#model = tf.keras.models.load_model('model.h5')
 
 @app.route('/')
 def index():
     return render_template('emoplay.html')
 
-@app.route('/audio', methods=['POST'])
-def save_audio():
-    audio_file = request.files['audio']
-    audio_path = 'recorded_audio.wav'
-    audio_file.save(audio_path)
-    return jsonify({'message': 'Audio file saved successfully.'})
+@app.route('/get-playlist', methods=['POST'])
+def get_playlist():
+    data = request.get_json()
+    emotion = data.get('emotion')
 
-@app.route('/detect-emotion', methods=['POST'])
-def detect_emotion():
-    audio_path = 'recorded_audio.wav'
-    predicted_emotion = classify_emotion(audio_path)
-    return jsonify({'emotion': predicted_emotion})
+    # Retrieve the playlist based on the selected emotion
+    playlist = get_playlist_by_emotion(emotion)
 
-def classify_emotion(audio_path):
-    audio, sr = librosa.load(audio_path, duration=3)  # Load audio file (adjust duration if needed)
-    features = extract_features(audio)  # Extract audio features
-    features = np.expand_dims(features, axis=0)  # Add batch dimension
-    prediction = model.predict(features)[0]  # Make prediction
-    emotion_moods = ['Neutral', 'Calm', 'Happy', 'Sad', 'Angry', 'Fearful', 'Disgust', 'Surprised']
-    predicted_emotion = emotion_moods[np.argmax(prediction)]
-    return predicted_emotion
+    # You can customize the playlist response based on your requirements
+    return jsonify({'playlist': playlist})
 
-def extract_features(audio):
-    chroma_stft = librosa.feature.chroma_stft(y=audio, sr=sr)
-    mfcc = librosa.feature.mfcc(y=audio, sr=sr)
-    features = np.concatenate((chroma_stft.mean(axis=1), mfcc.mean(axis=1)))  # Combine features
-    return features
+def get_playlist_by_emotion(emotion):
+    # Add your logic here to determine the playlist based on the emotion
+    # You can use conditionals or any other method to select the appropriate playlist
+    if emotion == 'sad':
+        return ['Song 1', 'Song 2', 'Song 3']
+    elif emotion == 'happy':
+        return ['Song 4', 'Song 5', 'Song 6']
+    elif emotion == 'excited':
+        return ['Song 7', 'Song 8', 'Song 9']
+    elif emotion == 'indifferent':
+        return ['Song 10', 'Song 11', 'Song 12']
+    else:
+        return []
 
 if __name__ == '__main__':
     app.run()
-

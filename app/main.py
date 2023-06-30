@@ -41,4 +41,4 @@ def spotify_callback():
     return redirect(url_for('index', access_token=access_token))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5002)

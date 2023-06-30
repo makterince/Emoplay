@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for, request
 import requests
 
 app = Flask(__name__, static_folder='static')

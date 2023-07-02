@@ -1,10 +1,10 @@
-iody {
+body {
   margin: 0;
   padding: 0;
 }
 
 .skin {
-  background: linear-gradient(45deg, purple, gold 50%, maroon 50%);
+  background: linear-gradient(45deg, black, white 50%, grey 50%);
   background-repeat: repeat;
   position: relative;
   z-index: -1;
@@ -78,8 +78,8 @@ iody {
   font-size: 18px;
   padding: 10px 20px;
   margin-right: 10px;
-  background-color: #2196F3;
-  color: #fff;
+  background-color: #grey;
+  color: #black;
   border: none;
   cursor: pointer;
 }

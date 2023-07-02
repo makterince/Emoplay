@@ -1,11 +1,10 @@
-body {
+iody {
   margin: 0;
   padding: 0;
 }
 
 .skin {
   background: linear-gradient(45deg, purple, gold 50%, maroon 50%);
-  background-size: 20px 20px;
   background-repeat: repeat;
   position: relative;
   z-index: -1;

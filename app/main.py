@@ -1,4 +1,3 @@
-#!/usr/env/python3
 from flask import Flask, render_template, redirect, url_for, request
 import requests
 
@@ -7,10 +6,9 @@ app = Flask(__name__, static_folder='static')
 # Spotify API credentials
 CLIENT_ID = '6b39c5ac11d84059b461372141789b59'
 CLIENT_SECRET = '29ffe2e6aaca4bda8738bf60faaaf8c3'
-REDIRECT_URI = 'https://http://127.0.0.1:5000/Emoplay'
+REDIRECT_URI = 'https://127.0.0.1:5000/Emoplay'
 
 # Spotify API endpoints
-AUTH_URL = 'https://accounts.spotify.com/authorize'
 TOKEN_URL = 'https://accounts.spotify.com/api/token'
 API_BASE_URL = 'https://api.spotify.com/v1'
 
@@ -18,6 +16,18 @@ API_BASE_URL = 'https://api.spotify.com/v1'
 @app.route('/')
 def index():
     return render_template('emoplay.html')
+
+# Flask route to initiate the Spotify authorization flow
+@app.route('/spotify_auth')
+def spotify_auth():
+    # Define the authorization scopes
+    scopes = ['user-read-private', 'user-read-email', 'playlist-modify-public']
+    
+    # Generate the authorization URL
+    auth_url = f'https://accounts.spotify.com/authorize?response_type=code&client_id={CLIENT_ID}&redirect_uri={REDIRECT_URI}&scope={"%20".join(scopes)}'
+    
+    # Redirect the user to Spotify's authorization page
+    return redirect(auth_url)
 
 # Flask route to handle the Spotify authorization flow
 @app.route('/spotify_callback')

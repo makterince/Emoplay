@@ -9,14 +9,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
   let currentPlaylistId = "";
 
-  // Initialize Spotify Web Playback SDK
-  window.onSpotifyWebPlaybackSDKReady = () => {
-    const player = new Spotify.Player({
-      name: 'Web Playback SDK Quick Start Player',
-      getOAuthToken: cb => { cb('<YOUR_SPOTIFY_ACCESS_TOKEN>'); },
-      volume: 0.5
-    });
-
     // Connect to the Spotify player
     player.connect().then(success => {
       if (success) {
@@ -90,4 +82,15 @@ document.addEventListener("DOMContentLoaded", function() {
       playPlaylist('5KvnL7siSa0tb6ZXFrqVih');
     });
   };
+	// Initialize Spotify Web Playback SDK
+	window.onSpotifyWebPlaybackSDKReady = () => {
+		const player = new Spotify.Player({
+			name: 'Web Playback SDK Quick Start Player',
+			getOAuthToken: cb => {
+				const urlParams = new URLSearchParams(window.location.search);
+				const access_token = urlParams.get('access_token');
+				cb(access_token);
+			},
+			volume: 0.5
+		});
 });

@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto', sans-serif;
+	background-image: url('images/180915_gouache123_0007bb.jpg');
+	background-size: cover;
+	background-position: center;
+	filter: blur(10px);
+	overflow: hidden;
+}
+
+.container {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: rgba(255, 255, 255, 0.8);
+	border-radius: 10px;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.title {	
+        font-size: 24px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.subtitle {
+	font-size: 18px;
+	margin-top: 0;
+	color: #333;
+	text-align: center;
+}
+
+.emotion-buttons {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+
+.emotion-buttons button {
+	font-size: 36px;
+	padding: 20px;
+	margin-right: 10px;
+	background-color: transparent;
+	color: #333;
+	border: none;
+	cursor: pointer;
+	transition: transform 0.3s ease-in-out;
+}
+
+.emotion-buttons button.active { 
+	transform: scale(1.2);
+}
+
+.play-controls {
+	display: flex;
+	align-items: center;
+	justify-content: center
+}
+
+.play-controls button {
+	font-size: 24px;
+	padding: 10px;
+	margin: 0 5px;
+	background-color: transparent;
+	color: #333;
+	border: none;
+	cursor: pointer;
+}
+
+.player {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 36px;
+	margin-top: 20px;
+}
+
+.player i {
+	color: #333;
+}
+
+@media screen and (max-width: 480px) {
+	.emotion-buttons {
+		flex-wrap: wrap;
+		margin-bottom: 10px;
+	}
+	.emotion-buttons button {
+		font-size: 24px;
+		padding: 10px;
+		margin: 5px;
+	}
+	
+	.play-controls button {
+		font-size: 18px;
+		padding: 5px;
+		margin: 0 3px
+	}
+	
+	.player {
+		font-size: 24px;
+	}
+}

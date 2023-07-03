@@ -1,12 +1,14 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, session, url_for, request
 import requests
+import os
 
 app = Flask(__name__, static_folder='static')
+app.secret_key = os.urandom(24)
 
 # Spotify API credentials
 CLIENT_ID = '6b39c5ac11d84059b461372141789b59'
 CLIENT_SECRET = '29ffe2e6aaca4bda8738bf60faaaf8c3'
-REDIRECT_URI = 'https://127.0.0.1:5000/Emoplay'
+REDIRECT_URI = 'https://127.0.0.1:5000/spotify_callback'
 
 # Spotify API endpoints
 TOKEN_URL = 'https://accounts.spotify.com/api/token'

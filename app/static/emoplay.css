@@ -1,13 +1,7 @@
-body {
-  margin: 0;
-  padding: 0;
-}
-
 .skin {
   background: linear-gradient(45deg, black, white 50%, grey 50%);
   background-repeat: repeat;
   position: relative;
-  z-index: -1;
   min-height: 100vh;
   width: 100vw;
 }
@@ -65,6 +59,11 @@ body {
   color: #fff;
   border: none;
   cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.emotion-buttons button.active {
+  transform: scale(1.2);
 }
 
 .play-controls {

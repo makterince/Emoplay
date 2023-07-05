@@ -67,7 +67,7 @@ def spotify_callback():
 @app.route('/')
 def index():
     access_token = session.get('access_token')
-    return render_template('emoplay.html', access_token=access_token)
+    return render_template('index.html', access_token=access_token)
 
 # Flask route to play music from the selected emotion playlist
 @app.route('/play_music/<emotion>')

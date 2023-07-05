@@ -59,7 +59,7 @@ def spotify_callback():
 @app.route('/')
 def index():
     access_token = session.get('access_token')
-    return render_template('emoplay.html', access_token=access_token)
+    return render_template('index.html', access_token=access_token)
 
 if __name__ == '__main__':
     app.run(debug=True)

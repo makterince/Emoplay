@@ -28,7 +28,7 @@
 					{% if not session.access_token %}
 					<a href="{{ url_for('spotify_auth') }}">Login with Spotify</a>
 					{% else %}
-					<a href="https://makterince.github.io/Emoplay/">Go to the App</a>
+					<a href="{{ your_deployed_app_url }}">Go to the App</a>
 					<a href="https://github.com/makterince/Emoplay">View on GitHub</a>
 					{% endif %}
 					<div class="player">

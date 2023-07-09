@@ -72,6 +72,10 @@ body {
 	transform: scale(1.2);
 }
 
+.emotion-buttons button.fade {
+	display: none;
+}
+
 .play-controls {
 	display: flex;
 	align-items: center;

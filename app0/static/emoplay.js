@@ -33,8 +33,13 @@ document.addEventListener('DOMContentLoaded', function() {
 			player.pause().then(() => {
 				player.setVolume(0.5).then(() => {
 					player.resume().then(() => {
-						player._options.getOAuthToken(access_token => {
-							fetch(`https://api.spotify.com/v1/me/player/play?device_id=${player._options.id}`, {
+						player.getCurrentState().then((state) => {
+							if (!state) {
+								console.error('Player state not available.');
+								return;
+							}
+							const { deviceId } = state;
+							fetch(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
 								method: 'PUT',
 								headers: {
 									'Content-Type': 'application/json',
@@ -53,7 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
 				});
 			});
 		};
-		
 		const buttons = document.querySelectorAll('.emotion-buttons button');
 		buttons.forEach(button => {
 			button.addEventListener('click', function () {

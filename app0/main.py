@@ -1,8 +1,6 @@
 from flask import Flask, redirect, render_template, request, session, url_for
 import requests
 import secrets
-import spotipy
-from spotipy.oauth2 import SpotifyOAuth
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
@@ -23,8 +21,8 @@ def spotify_auth():
     scopes = ['user-read-private', 'user-read-email', 'playlist-modify-public']
     
     # Generate the authorization URL
-    auth_url = f'{AUTH_URL}?response_type=code&client_id={CLIENT_ID}&redirect_uri={REDIRECT_URI}&scope={"%20".join(scopes)}'
-    
+    auth_url = f'{AUTH_URL}?response_type=code&client_id={CLIENT_ID}&redirect_uri={REDIRECT_URI}&scope=user-read-private%20user-read-email%20playlist-modify-public%20streaming'
+        
     # Redirect the user to Spotify's authorization page
     return redirect(auth_url)
 

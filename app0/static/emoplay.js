@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
+	const playControls = document.querySelector('.play-controls');
+	const access_token = playControls.getAttribute('data-access-token');
+
 	window.onSpotifyWebPlaybackSDKReady = () => {
 		const player = new Spotify.Player({
 			name: 'Web Playback SDK Quick Start Player',
 			getOAuthToken: cb => {
-				const urlParams = new URLSearchParams(window.location.search);
-				const access_token = urlParams.get('access_token');
 				cb(access_token);
 			},
 			volume: 0.5
@@ -26,20 +27,18 @@ document.addEventListener('DOMContentLoaded', function() {
 			console.error('Failed to connect to Spotify:', error);
 		});
 		
-		const playControls = document.querySelector('.play-controls');
-		const access_token = playControls.getAttribute('data-access-token');
-				
 		const playPlaylist = (playlistId) => {
-			player.pause().then(() => {
-				player.setVolume(0.5).then(() => {
-					player.resume().then(() => {
-						player.getCurrentState().then((state) => {
-							if (!state) {
-								console.error('Player state not available.');
-								return;
-							}
-							const { deviceId } = state;
-							fetch(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
+			player.getCurrentState().then((state) => {
+				if (!state || !state.device) {
+					console.error('Player state or device not available.');
+					return;
+				}
+				
+				const { device } = state;
+				player.pause().then(() => {
+					player.setVolume(0.5).then(() => {
+						player.resume().then(() => {
+							fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device.id}`, {                                                                    
 								method: 'PUT',
 								headers: {
 									'Content-Type': 'application/json',
@@ -48,15 +47,18 @@ document.addEventListener('DOMContentLoaded', function() {
 								body: JSON.stringify({
 									context_uri: `spotify:playlist:${playlistId}`
 								})
-							}).then(response => {
-								console.log(`Playing playlist: ${playlistId}`);
-							}).catch(error => {
-								console.error('Failed to play playlist:', error);
-							});
+								}).then(response => {
+									console.log(`Playing playlist: ${playlistId}`);
+								}).catch(error => {
+									console.error('Failed to play playlist:', error);
+								});
 						});
 					});
 				});
-			});
+							}).catch(error => {
+								console.error('Failed to retrieve player state:', error);
+							});
+			
 		};
 		const buttons = document.querySelectorAll('.emotion-buttons button');
 		buttons.forEach(button => {
